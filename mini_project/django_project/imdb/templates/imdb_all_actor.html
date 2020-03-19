@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-45">Actors</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                <tr>
+                    <th>Actor id</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Discription</th>
+                    <th>Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if list_actors %}
+                    {% for actor in list_actors %}
+                        <tr class="tr-shadow">
+                            <td>{{ actor.actor_id }}</td>                            
+                            <td class="desc">
+                                <a href="/imdb/actor/{{ actor.actor_id }}">{{actor.name }}</a>
+                            </td>
+                            <td>{{ actor.gender}}</td>
+                            <td>{{ actor.discription }}</td>
+                            <td><img src="/imdb/media/{{ actor.image }}" height="300" width="300"></td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                    {% endfor %}
+                {% else %}
+                    <p>Actors Not  Available</p>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+{% endblock %}

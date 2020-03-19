@@ -1,0 +1,338 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Dashboard</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}"
+          rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}"
+          rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'vendor/animsition/animsition.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'vendor/wow/animate.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'vendor/slick/slick.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'vendor/select2/select2.min.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}"
+          rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet" media="all">
+
+</head>
+<body class="animsition">
+<div class="page-wrapper">
+    <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
+                        <a href="/imdb/home/"><h2 class="title-1">IMDB</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- HEADER DESKTOP-->
+    </div>
+</div>
+
+<aside class="menu-sidebar d-none d-lg-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title mb-3"><a href = "https://tap.ibhubs.in/2019/mukunda-pedda-mekala/my_profile.html">My
+                        Profile</a></strong>
+                </div>
+                <div class="card-body">
+                    <div class="mx-auto d-block">
+                        <img class="rounded-circle mx-auto d-block"
+                             src="/imdb/media/1.jpeg"
+                             alt="Card image cap">
+                        <h5 class="text-sm-center mt-2 mb-1">Mukunda
+                            </h5>
+                        <div class="location text-sm-center">
+                            <i class="fa fa-map-marker"></i>
+                            Andhra Pradesh, India
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-text text-sm-center">
+                        <a href="#">
+                            <i class="fa fa-facebook pr-1"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter pr-1"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-linkedin pr-1"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-pinterest pr-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<div class="page-wrapper">
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        {% block analytics %}
+                        {% endblock %}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Colorlib. All rights
+                                    reserved. Template by <a
+                                            href="https://colorlib.com">Colorlib</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT-->
+    </div>
+    <!-- END PAGE CONTAINER-->
+</div>
+<!-- Jquery JS-->
+<script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+<!-- Bootstrap JS-->
+<script src="{% static 'vendor/bootstrap-4.1/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+<!-- Vendor JS       -->
+<script src="{% static 'vendor/slick/slick.min.js' %}">
+</script>
+<script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+<script src="{% static 'vendor/animsition/animsition.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+</script>
+<script src="{% static 'vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'vendor/counter-up/jquery.counterup.min.js' %}">
+</script>
+<script src="{% static 'vendor/circle-progress/circle-progress.min.js' %}"></script>
+<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'vendor/chartjs/Chart.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/select2/select2.min.js' %}">
+</script>
+
+<!-- Main JS-->
+<script type="text/javascript">
+        var single_bar_chart_data_one = {{single_bar_chart_data_one|safe}};
+</script>
+<script type="text/javascript">
+        var single_bar_chart_data_two = {{single_bar_chart_data_two|safe}};
+</script>
+<script type="text/javascript">
+        var single_bar_chart_data_three = {{single_bar_chart_data_three|safe}};
+</script>
+<script type="text/javascript">
+        var single_bar_chart_data_four = {{single_bar_chart_data_four|safe}};
+</script>
+<script type="text/javascript">
+        var single_bar_chart_data_five = {{single_bar_chart_data_five|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var doughnut_graph_data_one = {{doughnut_graph_data_one|safe}};
+</script>
+<script type="text/javascript">
+        var doughnut_graph_data_two = {{doughnut_graph_data_two|safe}};
+</script>
+<script type="text/javascript">
+        var doughnut_graph_data_three = {{doughnut_graph_data_three|safe}};
+</script>
+<script type="text/javascript">
+        var doughnut_graph_data_four = {{doughnut_graph_data_four|safe}};
+</script>
+<script type="text/javascript">
+        var doughnut_graph_data_five = {{doughnut_graph_data_five|safe}};
+</script>
+
+<script type="text/javascript">
+        var area_plot_data_one = {{area_plot_data_one|safe}};
+</script>
+<script type="text/javascript">
+        var area_plot_data_two = {{area_plot_data_two|safe}};
+</script>
+<script type="text/javascript">
+        var area_plot_data_three = {{area_plot_data_three|safe}};
+</script>
+<script type="text/javascript">
+        var area_plot_data_four = {{area_plot_data_four|safe}};
+</script>
+<script type="text/javascript">
+        var area_plot_data_five = {{area_plot_data_five|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var multi_line_plot_data_one = {{multi_line_plot_data_one|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var multi_line_plot_data_two = {{multi_line_plot_data_two|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_line_plot_data_three = {{multi_line_plot_data_three|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var multi_line_plot_data_four = {{multi_line_plot_data_four|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var multi_line_plot_data_five = {{multi_line_plot_data_five|safe}};
+</script>
+
+
+<script type="text/javascript">
+        var multi_bar_plot_data_one = {{multi_bar_plot_data_one|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_bar_plot_data_two = {{multi_bar_plot_data_two|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_bar_plot_data_three = {{multi_bar_plot_data_three|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_bar_plot_data_four = {{multi_bar_plot_data_four|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_bar_plot_data_five = {{multi_bar_plot_data_five|safe}};
+</script>
+
+
+
+
+
+<script type="text/javascript">
+        var multi_line_plot_data = {{multi_line_plot_data|safe}};
+</script>
+
+<script type="text/javascript">
+        var radar_chart_data_one = {{radar_chart_data_one|safe}};
+</script>
+<script type="text/javascript">
+        var radar_chart_data_two = {{radar_chart_data_two|safe}};
+</script>
+<script type="text/javascript">
+        var radar_chart_data_three = {{radar_chart_data_three|safe}};
+</script>
+<script type="text/javascript">
+        var radar_chart_data_four = {{radar_chart_data_four|safe}};
+</script>
+<script type="text/javascript">
+        var radar_chart_data_five = {{radar_chart_data_five|safe}};
+</script>
+
+<script type="text/javascript">
+        var multi_line_plot_with_area_data_one = {{multi_line_plot_with_area_data_one|safe}};
+</script>
+<script type="text/javascript">
+        var multi_line_plot_with_area_data_two = {{multi_line_plot_with_area_data_two|safe}};
+</script>
+<script type="text/javascript">
+        var multi_line_plot_with_area_data_three = {{multi_line_plot_with_area_data_three|safe}};
+</script>
+<script type="text/javascript">
+        var multi_line_plot_with_area_data_four = {{multi_line_plot_with_area_data_four|safe}};
+</script>
+<script type="text/javascript">
+        var multi_line_plot_with_area_data_five = {{multi_line_plot_with_area_data_five|safe}};
+</script>
+
+<script type="text/javascript">
+        var pie_chart_data_one = {{pie_chart_data_one|safe}};
+</script>
+
+<script type="text/javascript">
+        var pie_chart_data_two = {{pie_chart_data_two|safe}};
+</script>
+
+<script type="text/javascript">
+        var pie_chart_data_three = {{pie_chart_data_three|safe}};
+</script>
+
+<script type="text/javascript">
+        var pie_chart_data_four = {{pie_chart_data_four|safe}};
+</script>
+
+<script type="text/javascript">
+        var pie_chart_data_five = {{pie_chart_data_five|safe}};
+</script>
+
+
+
+<script type="text/javascript">
+        var polar_chart_data_one = {{polar_chart_data_one|safe}};
+</script>
+
+<script type="text/javascript">
+        var polar_chart_data_two = {{polar_chart_data_two|safe}};
+</script>
+
+<script type="text/javascript">
+        var polar_chart_data_three = {{polar_chart_data_three|safe}};
+</script>
+
+<script type="text/javascript">
+        var polar_chart_data_four = {{polar_chart_data_four|safe}};
+</script>
+
+<script type="text/javascript">
+        var polar_chart_data_five = {{polar_chart_data_five|safe}};
+</script>
+
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+<!-- end document-->

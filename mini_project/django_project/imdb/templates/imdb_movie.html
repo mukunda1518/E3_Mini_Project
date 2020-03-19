@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h2 class="heading-title m-b-35">{{ movie.name }}</h2>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/dc/Baahubali_The_Beginning_Movie_Poster.jpg" height="300" width="300">
+        </div>
+        <div>
+            <p class="director-note">
+
+            Baahubali: The Beginning is a 2015 South Indian epic action film directed by S. S. Rajamouli. The film was produced by Shobu Yarlagadda and Prasad Devineni and was shot in both Telugu and Tamil. This film was also dubbed into Malayalam and Hindi. The film stars Prabhas, Rana Daggubati, Anushka Shetty, and Tamannaah in the lead roles, with Ramya Krishna, Sathyaraj, and Nassar in supporting roles. The first of two cinematic parts, the film follows Shivudu, an adventurous young man who helps his love Avanthika, a rebellious warrior intending to rescue Devasena, the former queen of Mahishmati, who is now a prisoner under the tyrannical rule of king Bhallaladeva. In the process, he learns of his true identity as the heir to the throne of Mahishmati, the son of Amarendra Baahubali, whose tale is narrated to him by Kattappa, a loyal warrior. He is later revealed to be killed by Kattappa himself who is narrating the story. The reason behind this is explained in the follow-up Baahubali 2: The Conclusion.
+
+The film was conceived by Rajamouli's father K. V. Vijayendra Prasad, who randomly told him a story about Sivagami, a woman who carries a baby in her hand while crossing a river, and a few years later about Kattappa, which intrigued Rajamouli. His fascination with mythology and the tales of the Amar Chitra Katha comics further fuelled his interest in the story. However, it took the writers three months to complete the final draft. The soundtrack and background score were composed by M. M. Keeravani while the cinematography, production design, and VFX were handled by K. K. Senthil Kumar, Sabu Cyril and V. Srinivas Mohan respectively.
+            </p>
+        </div>
+
+        <h3 class="title-3 m-b-45">Director: <a href="/imdb/director/1/">{{ movie.director }}</a></h3>
+
+        <h3 class="title-5 m-b-45">Actors</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                <tr>
+                    <th>Actor id</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if actors_list %}
+                    {% for actor in actors_list %}
+                        <tr class="tr-shadow">
+                            <td>{{ actor.actor_id }}</td>
+                            <td class="desc">
+                                <a href="/imdb/actor/{{ actor.actor_id }}">{{ actor.name }}</a>
+                            </td>
+                            <td>{{ actor.gender}}</td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                    {% endfor %}
+                {% else %}
+                    <p>No Actors Available</p>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+{% endblock %}

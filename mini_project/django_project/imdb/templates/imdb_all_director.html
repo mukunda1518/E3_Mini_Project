@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-45">Directors</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                <tr>
+                    <th>Director id</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if list_directors %}
+                    {% for director in list_directors %}
+                        <tr class="tr-shadow">
+                            <td>{{ director.id }}</td>                            
+                            <td class="desc">
+                                <a href="/imdb/director/{{ director.id }}">{{director.name }}</a>
+                            </td>
+                            <td>{{ director.gender}}</td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                    {% endfor %}
+                {% else %}
+                    <p>Directors Not  Available</p>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,505 @@
+{% extends 'analytics_base.html' %}
+{% load static %}
+
+{% block analytics %}
+{% if single_bar_chart_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{ single_bar_chart_data_one_title }}</h3>
+                <canvas id="singleBarChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if area_plot_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{area_plot_data_one_title}}</h3>
+                <canvas id="area-chart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if doughnut_graph_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{doughnut_graph_data_one_title}}</h3>
+                <canvas id="doughutChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_data_one_title}}</h3>
+                <canvas id="multi-line-chart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_with_area_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_with_area_data_one_title}}</h3>
+                <canvas id="lineChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if pie_chart_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{pie_chart_data_one_title}}</h3>
+                <canvas id="pieChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if polar_chart_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{polar_chart_data_one_title}}</h3>
+                <canvas id="polarChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if radar_chart_data_one %}
+<div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">{{radar_chart_data_one_title}}</h3>
+            <canvas id="radarChart1"></canvas>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if multi_bar_plot_data_one %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_bar_plot_data_one_title}}</h3>
+                <canvas id="barChart1"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+
+
+
+
+
+{% if single_bar_chart_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{ single_bar_chart_data_two_title }}</h3>
+                <canvas id="singleBarChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if area_plot_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{area_plot_data_two_title}}</h3>
+                <canvas id="area-chart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if doughnut_graph_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{doughnut_graph_data_two_title}}</h3>
+                <canvas id="doughutChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_data_two_title}}</h3>
+                <canvas id="multi-line-chart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_with_area_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_with_area_data_two_title}}</h3>
+                <canvas id="lineChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if pie_chart_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{pie_chart_data_two_title}}</h3>
+                <canvas id="pieChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if polar_chart_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{polar_chart_data_two_title}}</h3>
+                <canvas id="polarChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if radar_chart_data_two %}
+<div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">{{radar_chart_data_two_title}}</h3>
+            <canvas id="radarChart2"></canvas>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if multi_bar_plot_data_two %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_bar_plot_data_two_title}}</h3>
+                <canvas id="barChart2"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+{% if single_bar_chart_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{ single_bar_chart_data_three_title }}</h3>
+                <canvas id="singleBarChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if area_plot_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{area_plot_data_three_title}}</h3>
+                <canvas id="area-chart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if doughnut_graph_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{doughnut_graph_data_three_title}}</h3>
+                <canvas id="doughutChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_data_three_title}}</h3>
+                <canvas id="multi-line-chart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_with_area_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_with_area_data_three_title}}</h3>
+                <canvas id="lineChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if pie_chart_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{pie_chart_data_three_title}}</h3>
+                <canvas id="pieChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if polar_chart_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{polar_chart_data_three_title}}</h3>
+                <canvas id="polarChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if radar_chart_data_three %}
+<div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">{{radar_chart_data_three_title}}</h3>
+            <canvas id="radarChart3"></canvas>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if multi_bar_plot_data_three %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_bar_plot_data_three_title}}</h3>
+                <canvas id="barChart3"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+
+{% if single_bar_chart_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{ single_bar_chart_data_four_title }}</h3>
+                <canvas id="singleBarChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if area_plot_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{area_plot_data_four_title}}</h3>
+                <canvas id="area-chart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if doughnut_graph_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{doughnut_graph_data_four_title}}</h3>
+                <canvas id="doughutChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_data_four_title}}</h3>
+                <canvas id="multi-line-chart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_with_area_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_with_area_data_four_title}}</h3>
+                <canvas id="lineChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if pie_chart_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{pie_chart_data_four_title}}</h3>
+                <canvas id="pieChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if polar_chart_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{polar_chart_data_four_title}}</h3>
+                <canvas id="polarChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if radar_chart_data_four %}
+<div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">{{radar_chart_data_four_title}}</h3>
+            <canvas id="radarChart4"></canvas>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if multi_bar_plot_data_four %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_bar_plot_data_four_title}}</h3>
+                <canvas id="barChart4"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+
+
+{% if single_bar_chart_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{ single_bar_chart_data_five_title }}</h3>
+                <canvas id="singleBarChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if area_plot_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{area_plot_data_five_title}}</h3>
+                <canvas id="area-chart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if doughnut_graph_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{doughnut_graph_data_five_title}}</h3>
+                <canvas id="doughutChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_data_five_title}}</h3>
+                <canvas id="multi-line-chart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if multi_line_plot_with_area_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_line_plot_with_area_data_five_title}}</h3>
+                <canvas id="lineChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if pie_chart_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{pie_chart_data_five_title}}</h3>
+                <canvas id="pieChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if polar_chart_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{polar_chart_data_five_title}}</h3>
+                <canvas id="polarChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if radar_chart_data_five %}
+<div class="col-lg-6">
+    <div class="au-card m-b-30">
+        <div class="au-card-inner">
+            <h3 class="title-2 m-b-40">{{radar_chart_data_five_title}}</h3>
+            <canvas id="radarChart5"></canvas>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if multi_bar_plot_data_five %}
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <h3 class="title-2 m-b-40">{{multi_bar_plot_data_five_title}}</h3>
+                <canvas id="barChart5"></canvas>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

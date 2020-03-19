@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h2 class="heading-title m-b-35">{{ actor.name }}</h2>
+        <div>
+            <img src="/imdb/media/{{ actor.image }}" height="300" width="300">
+            <!-- <img src="https://timesnext.com/wp-content/uploads/2019/12/facts-you-must-know-about-prabhas.jpg" height="300" width="300"> -->
+        </div>
+        <div>
+            <p class="director-note">
+
+            Uppalapati Venkata Satyanarayana Prabhas Raju (born 23 October 1979), known mononymously as Prabhas, is an Indian actor who works in Telugu, Hindi and Tamil films. Prabhas made his screen debut with the 2002 Telugu action drama film Eeswar. He has garnered the state Nandi Award for Best Actor, for his role in Mirchi.[3] He made guest appearance in Prabhudeva's 2014 Hindi film Action Jackson.[4] Prabhas is the first south Indian actor to have his wax sculpture at Madame Tussaud's wax museum.[5]
+
+His works include Varsham (2004), Chatrapathi (2005), Chakram (2005), Billa (2009), Darling (2010), Mr. Perfect (2011), and Mirchi (2013). Prabhas played the title role in S. S. Rajamouli's epic action film Baahubali: The Beginning (2015), which is the fourth-highest-grossing Indian film to date. Prabhas reprised his role in its sequel, Baahubali 2: The Conclusion (2017), which became the first Indian film ever to gross over ₹1,000 crore (US$155 million) in all languages in just ten days, and it is the second highest-grossing Indian film to date.
+            </p>
+        </div>
+
+        <h3 class="title-5 m-b-45">Movies</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>Movie Id</th>
+                        <th>Name</th>
+                        <th>Release_Date</th>
+                        <th>Box_Office_Collection_In_Crores</th>
+                        <th>Director</th>
+                        <th>Actors</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if movies_list %}
+                        {% for movie in movies_list %}
+                            <tr class="tr-shadow">
+                                <td>{{ movie.movie_id }}</td>
+                                <td >
+                                    <a href="/imdb/movie/{{ movie.movie_id }}/">{{ movie.name }}</a>
+                                </td>
+                                <td>{{ movie.release_date }}</td>
+                                <td> {{ movie.box_office_collection_in_crores }}<span> crs</span></td>
+                                <td >
+                                    <a href="/imdb/director/{{ movie.director.id }}/">{{ movie.director }}</a>
+                                </td>
+                                <td >
+                                    <a href="/imdb/movie/{{ movie.movie_id }}">{{ movie.actors }}</a>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        {% endfor %}
+                    {% else %}  
+                        <p>No movies are available.</p>
+                    {% endif %}
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
+
+{% endblock %}
