@@ -14,3 +14,4 @@ urlpatterns = [
     path('actor/',views.all_actor, name = 'all_actor'),
     path('director/',views.all_director, name = 'all_director'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

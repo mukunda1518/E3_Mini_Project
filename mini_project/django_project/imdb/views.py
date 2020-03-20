@@ -25,21 +25,24 @@ def director(request,director_id):
 
 
 def analytics(request):
-    single_bar_chart = get_movie_collections_by_single_bar_chart()
-    two_bar_chart = get_movie_collections_budget_by_two_bar_plot_data()
-    multi_bar_chart = get_multi_line_plot_data()
-    area_plot = get_area_plot_data()
-    multi_area = get_multi_line_plot_with_area_data()
-    pie_chart = get_pie_chart_data()
-    doughnut = get_doughnut_chart_data()
-    single_bar_chart.update(single_bar_chart)
-    single_bar_chart.update(two_bar_chart)
-    single_bar_chart.update(multi_bar_chart)
-    single_bar_chart.update(area_plot)
-    single_bar_chart.update(multi_area)
-    single_bar_chart.update(pie_chart)
-    single_bar_chart.update(doughnut)
-    return render(request,'analytics.html',context = single_bar_chart)
+    graphs = {}
+    collection_budget = get_movie_collections_budget_by_two_bar_plot_data()
+    movie_result = movie_result_get_multi_line_plot_with_area_data()
+    no_of_movies = no_of_movies_get_by_single_bar_chart()
+    director_movie = director_movie_get_area_plot_data()
+    actors_percent = actors_percent_get_pie_chart_data()
+    male_femal_count = male_female_get_multi_line_plot_data_gender()
+    genre = genre_get_doughnut_chart_data()
+    rating_movie = movie_rating_get_area_plot_data()
+    graphs.update(collection_budget)
+    graphs.update(movie_result)
+    graphs.update(no_of_movies)
+    graphs.update(director_movie)
+    graphs.update(actors_percent)
+    graphs.update(male_femal_count)
+    graphs.update(genre)
+    graphs.update(rating_movie)
+    return render(request,'analytics.html',context = graphs)
 
 
 def all_movie(request):
@@ -53,6 +56,7 @@ def all_actor(request):
 def all_director(request):
     list_directors = Director.objects.all()
     return render(request,'imdb_all_director.html',{'list_directors' : list_directors})
+
 
 
 

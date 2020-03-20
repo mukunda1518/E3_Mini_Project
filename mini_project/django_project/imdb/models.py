@@ -31,11 +31,6 @@ class Director(models.Model):
         return self.name
     
 class Movie(models.Model):
-    RESULT = (
-        ('Block Buster','B'),
-        ('Average','A'),
-        ('Disaster','D')
-    )
     name = models.CharField(max_length = 100)
     movie_id = models.CharField(max_length = 100, primary_key = True)
     release_year = models.CharField(max_length = 10,null = True)
@@ -48,7 +43,7 @@ class Movie(models.Model):
     budget = models.FloatField(null = True)
     discription = models.TextField(null = True,blank = True)
     genre = models.CharField(max_length = 50,null = True)
-    result = models.CharField(max_length = 30, choices = RESULT,null = True)
+    result = models.CharField(max_length = 30,null = True)
     image = models.ImageField(null = True,blank = True)
     director = models.ForeignKey(Director, on_delete = models.CASCADE)
     actors = models.ManyToManyField(Actor, through = 'imdb.Cast')

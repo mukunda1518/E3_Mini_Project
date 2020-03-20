@@ -15,8 +15,8 @@
                     <th>Actor id</th>
                     <th>Name</th>
                     <th>Gender</th>
-                    <th>Discription</th>
-                    <th>Image</th>
+                    <!--<th>Discription</th>
+                    <th>Image</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -28,8 +28,8 @@
                                 <a href="/imdb/actor/{{ actor.actor_id }}">{{actor.name }}</a>
                             </td>
                             <td>{{ actor.gender}}</td>
-                            <td>{{ actor.discription }}</td>
-                            <td><img src="/imdb/media/{{ actor.image }}" height="300" width="300"></td>
+                            <!-- <td>{{ actor.discription }}</td>
+                            <td><img src="/imdb/media/{{ actor.image }}" height="300" width="300"></td> -->
                         </tr>
                         <tr class="spacer"></tr>
                     {% endfor %}

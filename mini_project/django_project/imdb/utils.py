@@ -38,6 +38,13 @@ def populate_database(actors_list, movies_list, directors_list):
         fb_likes = 0
         if item['likes_on_fb']:
             fb_likes = item['likes_on_fb']
+        result = ""
+        if float(item['average_rating']) > 8.0:
+            result = 'Block Buster'
+        elif float(item['average_rating']) > 5.0:
+            result = 'Average'
+        else:
+            result = 'Disaster'
         director_obj = Director.objects.get(name = item["director_name"])
         obj = Movie.objects.create(
                                     movie_id = item["movie_id"], 
@@ -51,7 +58,7 @@ def populate_database(actors_list, movies_list, directors_list):
                                     language = item['language'],
                                     no_of_users_voted = item['no_of_users_voted'],
                                     average_rating = item['average_rating'],
-                                    #result = item["result"],
+                                    result = result,
                                     #discription = item["discription"],
                                     #image = item["image"],
                                     director = director_obj
@@ -69,7 +76,7 @@ def populate_database(actors_list, movies_list, directors_list):
             cast_obj.save()
 
 def actor_read_data():
-    obj = open("/home/mukunda/Desktop/100_movies/actors_100.json",'r')
+    obj = open("/home/mukunda/Desktop/complete_data/actors_5000.json",'r')
     actor_list = obj.read()
     actors_list = json.loads(actor_list)
     return actors_list
@@ -81,32 +88,10 @@ def director_read_data():
     return directors_list
 
 def movie_read_data():
-    obj = open("/home/mukunda/Desktop/100_movies/movies_100.json",'r')
+    obj = open("/home/mukunda/Desktop/complete_data/movies_5000.json",'r')
     movie_list = obj.read()
     movies_list = json.loads(movie_list)
     return movies_list
-
-
-
-def get_average_rating_of_movie(movie_obj):
-    try:
-        rating_obj = Rating.objects.get(movie = movie_obj)
-    except Rating.DoesNotExist:
-        return 0
-    else:
-        one_count = movie_obj.rating.rating_one_count
-        two_count = movie_obj.rating.rating_two_count
-        three_count = movie_obj.rating.rating_three_count
-        four_count = movie_obj.rating.rating_four_count
-        five_count = movie_obj.rating.rating_five_count
-        total_count = one_count + two_count + three_count + four_count + five_count
-        if total_count == 0:
-            return 0
-        else:
-            sum = one_count * 1 + two_count * 2 + three_count * 3 + four_count * 4 + five_count * 5
-            avg = (sum * 1.0) / total_count
-            return round(avg,1)
-
 
 
 
@@ -130,13 +115,14 @@ def execute_sql_query(sql_query):
 def get_movie_collections_budget_by_two_bar_plot_data():
     query = """
         SELECT release_year,
-                AVG(box_office_collection_in_crores) as collection,
-                AVG(budget) as budget
+                round(AVG(box_office_collection_in_crores),0) as collection,
+                round(AVG(budget / 1000000),0) as budget
         FROM imdb_movie
-        WHERE release_year BETWEEN 2000 AND 2016
+        WHERE release_year BETWEEN 2010 AND 2016
         GROUP BY release_year
         """
     list_tuples = execute_sql_query(query)
+    print(list_tuples)
     movie_collections = []
     movie_budget = []
     movie_year = []
@@ -168,20 +154,22 @@ def get_movie_collections_budget_by_two_bar_plot_data():
 
     return {
         'multi_bar_plot_data_one': json.dumps(multi_bar_plot_data),
-        'multi_bar_plot_data_one_title': 'Collection vs Budget'
+        'multi_bar_plot_data_one_title': 'Collection vs Budget in Crores'
     }
 
 
-def get_multi_line_plot_with_area_data():
+def movie_result_get_multi_line_plot_with_area_data():
     query1 = """
             SELECT release_year,
                     result,
                     count(*)
             FROM imdb_movie 
+            WHERE release_year BETWEEN 2010 AND 2016
             GROUP BY release_year,result
             """
     query2 = """SELECT release_year 
                 FROM imdb_movie
+                WHERE release_year BETWEEN 2010 AND 2016
                 GROUP BY release_year
                 """
     list1 = execute_sql_query(query1)
@@ -215,7 +203,7 @@ def get_multi_line_plot_with_area_data():
                 "label": "Block Buster",
                 "borderColor": "rgba(0,0,0,.09)",
                 "borderWidth": "1",
-                "backgroundColor": "rgb(153, 255, 51,0.7)",
+                "backgroundColor": "rgb(0, 204, 0)",
                 "data": b_count
             },
             {
@@ -230,7 +218,7 @@ def get_multi_line_plot_with_area_data():
                 "label": "Disaster",
                 "borderColor": "rgba(0, 123, 255, 0.9)",
                 "borderWidth": "1",
-                "backgroundColor": "rgba(0, 123, 255, 0.5)",
+                "backgroundColor": "rgb(255, 0, 0)",
                 "pointHighlightStroke": "rgba(26,179,148,1)",
                 "data": d_count
             }
@@ -246,11 +234,12 @@ def get_multi_line_plot_with_area_data():
 
 
 
-def get_movie_collections_by_single_bar_chart():
+def no_of_movies_get_by_single_bar_chart():
     query = """
             SELECT release_year,
                 count(*)
             FROM imdb_movie
+            WHERE release_year BETWEEN 2005 AND 2016
             GROUP BY release_year
             """
     list1 = execute_sql_query(query)
@@ -267,7 +256,7 @@ def get_movie_collections_by_single_bar_chart():
                 "label" : "No of movies",
                 "borderColor": "rgba(0, 100, 155, 0.9)",
                 "border_width": "0",
-                "backgroundColor":"rgb(153, 153, 255,0.9)"
+                "backgroundColor":"rgb(0, 255, 153)"
             }
         ]
     }
@@ -279,13 +268,13 @@ def get_movie_collections_by_single_bar_chart():
 
 
 
-def get_area_plot_data():
+def director_movie_get_area_plot_data():
     query = """
             SELECT release_year,
                     count(*)
             FROM imdb_movie as m,
             imdb_director as d
-            WHERE m.director_id = d.id AND d.id = 3
+            WHERE m.director_id = d.id AND d.id = 2
             GROUP BY release_year
             """
     list1 = execute_sql_query(query)
@@ -301,7 +290,7 @@ def get_area_plot_data():
         "datasets": [{
             "data": count,
             "label": "Movies count",
-            "backgroundColor": 'rgba(0,103,255,.15)',
+            "backgroundColor": 'rgb(255, 153, 255))',
             "borderColor": 'rgba(0,103,255,0.5)',
             "borderWidth": 3.5,
             "pointStyle": 'circle',
@@ -317,7 +306,7 @@ def get_area_plot_data():
 
 
 
-def get_pie_chart_data():
+def actors_percent_get_pie_chart_data():
     query = """
             SELECT round((COUNT(*)*100.0)/(SELECT COUNT(*)
                                     FROM imdb_actor),2) as percent
@@ -330,16 +319,10 @@ def get_pie_chart_data():
         "datasets": [{
             "data": list1,
             "backgroundColor": [
-                "rgba(0, 123, 255,0.9)",
-                "rgba(0, 123, 255,0.7)",
-                "rgba(0, 123, 255,0.5)",
-                "rgba(0,0,0,0.07)"
+                "rgb(255, 153, 51)",
+                "rgb(255, 102, 153)"
             ],
-            "hoverBackgroundColor": [
-                "rgba(0, 123, 255,0.9)",
-                "rgba(0, 123, 255,0.7)",
-                "rgba(0, 123, 255,0.5)",
-                "rgba(0,0,0,0.07)"
+            "hoverBackgroundColor": [   
             ]
 
         }],
@@ -359,12 +342,24 @@ def get_pie_chart_data():
 
 
 
-def get_multi_line_plot_data():
+def male_female_get_multi_line_plot_data_gender():
     query = """
-    select release_year,gender,count(*) from imdb_actor as a,imdb_movie as m,imdb_cast as c where a.actor_id = c.actor_id and m.movie_id = c.movie_id group by m.release_year,a.gender;
+    SELECT release_year,
+            gender,
+            count(*) 
+    FROM imdb_actor as a,
+        imdb_movie as m,
+        imdb_cast as c 
+    WHERE a.actor_id = c.actor_id AND m.movie_id = c.movie_id AND release_year between 2005 AND 2016
+    GROUP BY m.release_year,a.gender;
     """
     query1 = """
-    select release_year from imdb_actor as a,imdb_movie as m,imdb_cast as c where a.actor_id = c.actor_id and m.movie_id = c.movie_id group by m.release_year;
+    select release_year
+    from imdb_actor as a,
+        imdb_movie as m,
+        imdb_cast as c 
+    where a.actor_id = c.actor_id and m.movie_id = c.movie_id and release_year between 2005 and 2016
+    group by m.release_year;
     """
     list1 = execute_sql_query(query)
     list2 = execute_sql_query(query1)
@@ -373,7 +368,7 @@ def get_multi_line_plot_data():
     for item in list2:
         year[item[0]] = copy.deepcopy(gender)
     for y,gender,count in list1:
-        if gender == 'F':
+        if gender == 'female':
             year[y]['F'] = copy.deepcopy(count)
         else:
             year[y]['M'] = copy.deepcopy(count)
@@ -382,6 +377,7 @@ def get_multi_line_plot_data():
     for v in year.values():
         f_count.append(v['F'])
         m_count.append(v['M'])
+    
     multi_line_plot_data = {
         "labels": list2,
         "type": 'line',
@@ -410,16 +406,17 @@ def get_multi_line_plot_data():
     }
     return {
         'multi_line_plot_data_one': json.dumps(multi_line_plot_data),
-        'multi_line_plot_data_one_title': 'Male and Female Actors'
+        'multi_line_plot_data_one_title': 'Male and Female Actors Count'
     }
 
 
-def get_doughnut_chart_data():
+
+def genre_get_doughnut_chart_data():
     query = """
     SELECT genre,
-        (count(*) * 100.0 )/ (SELECT COUNT(*)
-                            FROM imdb_movie) as pecent
+            AVG(box_office_collection_in_crores)
     FROM imdb_movie
+    WHERE genre IN ('Crime','Family','Comedy','Drama','Action','Fantasy')
     GROUP BY genre
     """
     list1 = execute_sql_query(query)
@@ -432,17 +429,20 @@ def get_doughnut_chart_data():
         "datasets": [{
             "data": percent,
             "backgroundColor": [
-                "rgba(100, 123, 255,0.9)",
-                "rgba(150, 123, 255,0.7)",
-                "rgba(10, 123, 255,0.5)",
-                "rgba(0,0,0,0.07)"
+                "rgb(255, 102, 204)",
+                "rgb(0, 255, 0)",
+                "rgba(150, 100, 250,0.7)",
+                "rgb(51, 153, 102)",
+                "rgb(255, 0, 0)",
+                "rgb(153, 51, 51)",
+                "rgb(255, 255, 0)",
+                "rgb(153, 0, 255)",
+                "rgb(51, 51, 0)",
+                "rgb(0, 255, 204)",
+                "rgb(204, 204, 0)",
+                "rgb(153, 51, 51)"
             ],
-            "hoverBackgroundColor": [
-                "rgba(0, 123, 255,0.9)",
-                "rgba(0, 123, 255,0.7)",
-                "rgba(0, 123, 255,0.5)",
-                "rgba(0,0,0,0.07)"
-            ]
+            "hoverBackgroundColor": []
 
         }],
         "labels": genre
@@ -450,51 +450,81 @@ def get_doughnut_chart_data():
 
     return {
         'doughnut_graph_data_one': json.dumps(doughnut_graph_data),
-        'doughnut_graph_data_one_title': 'Percentage of Movies'
+        'doughnut_graph_data_one_title': 'Collections of Movies By Genre'
     }
 
-
-def get_movie_collections_by_polar_chart():
+def rating_movies():
     query = """
-            SELECT release_year,
-                count(*)
-            FROM imdb_movie
-            GROUP BY release_year
-            """
-    list1 = execute_sql_query(query)
+        SELECT release_year,
+                round(AVG(average_rating),1) as avg
+        FROM imdb_movie
+        WHERE release_year BETWEEN 2010 AND 2016
+        GROUP BY release_year;
+        """
+    list1 = list1 = execute_sql_query(query)
     year = []
-    count = []
+    rating = []
     for item in list1:
         year.append(item[0])
-        count.append(item[1])
-    print(year)
-    print(count)
-    polar_chart_data = {
+        rating.append(item[1])
+    multi_line_plot_data = {
+        "labels": year,
+        "type": 'line',
+        "defaultFontFamily": 'Poppins',
         "datasets": [{
-            "data": count,
-            "backgroundColor": [
-                "rgb(204, 0, 204,0.9)",
-                "rgba(100, 200, 105,0.8)",
-                "rgb(240, 100, 0,0.7)",
-                "rgb(153, 102, 51,0.9)",
-                "rgba(0, 123, 155,0.5)"
-            ]
-
-        }],
-        "labels": year
+            "label": "Movies_Rating",
+            "data": rating,
+            "backgroundColor": 'transparent',
+            "borderColor": 'rgba(220,53,69,0.75)',
+            "borderWidth": 3,
+            "pointStyle": 'circle',
+            "pointRadius": 5,
+            "pointBorderColor": 'transparent',
+            "pointBackgroundColor": 'rgba(220,53,69,0.75)',
+        }]
     }
     return {
-        'polar_chart_data_one': json.dumps(
-            polar_chart_data),
-        'polar_chart_data_one_title': 'Movie Collections vs Movies'
+        'multi_line_plot_data_one': json.dumps(multi_line_plot_data),
+        'multi_line_plot_data_one_title': 'Average Rating of Movies'
     }
 
-
-
+def movie_rating_get_area_plot_data():
+    query = """
+        SELECT release_year,
+                round(AVG(average_rating),1) as avg
+        FROM imdb_movie
+        WHERE release_year BETWEEN 2010 AND 2016
+        GROUP BY release_year;
+        """
+    list1 = list1 = execute_sql_query(query)
+    year = []
+    rating = []
+    for item in list1:
+        year.append(item[0])
+        rating.append(item[1])
+    area_plot_data = {
+        "labels": year,
+        "type": 'line',
+        "defaultFontFamily": 'Poppins',
+        "datasets": [{
+            "data": rating,
+            "label": "Movies Ratings",
+            "backgroundColor": 'rgb(200, 153, 205))',
+            "borderColor": 'rgba(0,103,255,0.5)',
+            "borderWidth": 3.5,
+            "pointStyle": 'circle',
+            "pointRadius": 5,
+            "pointBorderColor": 'transparent',
+            "pointBackgroundColor": 'rgba(0,103,255,0.5)',
+        }, ]
+    }
+    return {
+        'area_plot_data_one': json.dumps(area_plot_data),
+        'area_plot_data_one_title': 'Movie Ratings'
+    }
 
 
     
-
 
 
 
